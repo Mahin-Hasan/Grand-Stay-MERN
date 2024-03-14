@@ -36,6 +36,7 @@ const MenuDropdown = () => {
           </div>
         </div>
       </div>
+      {/* conditional rendering if true than render below code or else ignore */}
       {isOpen && (
         <div className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
           <div className='flex flex-col cursor-pointer'>
