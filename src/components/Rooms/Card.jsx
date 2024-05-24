@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 
+import { Link } from "react-router-dom";
+
 const Card = ({ room }) => {
-    //handling minimal zoom effect with group classname
+    //handling minimal zoom effect throughout the card with group classname and  group-hover:scale-110
     return (
-        <div className='col-span-1 cursor-pointer group'> 
+        <Link to={`/room/${room?._id}`} className='col-span-1 cursor-pointer group'>
             <div className='flex flex-col gap-2 w-full'>
                 <div
                     className='
@@ -25,13 +27,7 @@ const Card = ({ room }) => {
                         src={room?.image}
                         alt='Room'
                     />
-                    <div
-                        className='
-              absolute
-              top-3
-              right-3
-            '
-                    >
+                    <div className='absolute top-3 right-3'>
                         {/* <HeartButton /> */}
                     </div>
                 </div>
@@ -44,7 +40,7 @@ const Card = ({ room }) => {
                     <div className='font-light'>night</div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 

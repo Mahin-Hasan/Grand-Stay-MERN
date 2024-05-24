@@ -13,15 +13,15 @@ const CategoryBox = ({ label, icon: Icon, selected }) => {
 
         if (params) {
             currentQuery = qs.parse(params.toString()) // qs converts the query into object string 
-
-            const updatedQuery = { ...currentQuery, category: label } // in object form
-
-            const url = qs.stringifyUrl({ // as browser search only supports string so we need to stringyfy 
-                url: '/',
-                query: updatedQuery,
-            })
-            navigate(url);
         }
+        const updatedQuery = { ...currentQuery, category: label } // in object form
+
+        const url = qs.stringifyUrl({ // as browser search only supports string so we need to stringyfy 
+            url: '/',
+            query: updatedQuery,
+        })
+        navigate(url);
+
     }
 
     return (

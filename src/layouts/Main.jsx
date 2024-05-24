@@ -5,7 +5,7 @@ const Main = () => {
   return (
     <div>
       <Navbar />
-      {/* -68px is from footer height */}
+      {/* -68px is height taken by footer used to remove scrollbar issue */}
       <div className='pt-24 min-h-[calc(100vh-68px)]'> 
         <Outlet />
       </div>
