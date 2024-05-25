@@ -7,7 +7,6 @@ const CategoryBox = ({ label, icon: Icon, selected }) => {
     //selected will be used for conditional class name rendering 
     const [params, setParams] = useSearchParams();
     const navigate = useNavigate();
-    console.log(selected);
     const handleClick = () => {
         let currentQuery = {};
 

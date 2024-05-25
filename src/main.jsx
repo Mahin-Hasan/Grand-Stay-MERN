@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { HelmetProvider } from 'react-helmet-async'
+// for using calender need to import react date rang css styles
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <HelmetProvider>
@@ -16,3 +17,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </AuthProvider>
   </HelmetProvider>
 )
+
