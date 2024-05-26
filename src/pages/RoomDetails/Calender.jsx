@@ -5,7 +5,8 @@ const Calender = ({ value, handleSelect }) => {
     console.log(value);
     return (
         <DateRange
-            rangeColors={['#F43F5E']}
+            ranges={[value]}
+            rangeColors={['#6366f1']}
             direction='vertical'
             showDateDisplay={false}
         />

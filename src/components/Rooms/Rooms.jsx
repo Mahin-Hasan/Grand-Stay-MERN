@@ -4,6 +4,7 @@ import Container from "../Shared/Container";
 import { useSearchParams } from "react-router-dom";
 import Heading from "../Shared/Heading";
 import Loader from "../Shared/Loader";
+import { getAllRooms } from "../../api/rooms";
 
 
 const Rooms = () => {
@@ -15,19 +16,34 @@ const Rooms = () => {
     const category = params.get('category');
 
 
+
     useEffect(() => {
         setLoading(true);
-        fetch('./rooms.json')
-            .then(res => res.json())
+        getAllRooms()
             .then(data => {
-                //filter functionality according to clicked category
                 if (category) {
                     const filtered = data.filter(room => room.category === category);
                     setRooms(filtered);
                 } else setRooms(data);
                 setLoading(false);
             })
-    }, [category]) // dependency must be included bz it changes inside useEffect or else it will give error
+    }, [category])
+
+
+    //previously used useEffect
+    // useEffect(() => {
+    //     setLoading(true);
+    //     fetch('./rooms.json')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             //filter functionality according to clicked category
+    //             if (category) {
+    //                 const filtered = data.filter(room => room.category === category);
+    //                 setRooms(filtered);
+    //             } else setRooms(data);
+    //             setLoading(false);
+    //         })
+    // }, [category]) // dependency must be included bz it changes inside useEffect or else it will give error
 
     //adding loader
     if (loading) return <Loader />
