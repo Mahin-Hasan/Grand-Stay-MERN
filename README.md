@@ -1,1 +1,1 @@
-# Last Update from Razer
+# ----- Site in developement phase -----
