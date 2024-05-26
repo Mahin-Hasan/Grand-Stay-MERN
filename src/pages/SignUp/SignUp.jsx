@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
-import axios from 'axios';
+// import axios from 'axios';
 import { imageUpload } from '../../api/utils';
+import useAuth from '../../hooks/useAuth';
+import { saveUser } from '../../api/auth';
 
 const SignUp = () => {
+  const { createUser, updateUserProfile, signInWithGoogle } = useAuth()
+
   //form submit handler
   const handleSubmit = async event => {
     event.preventDefault();
@@ -13,8 +17,27 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const image = form.image.files[0];//index 0 bz only one item of the file should be selected
-    const imageData = await imageUpload(image);
-    console.log(imageData);
+    try {
+      //Upload Image
+      const imageData = await imageUpload(image);
+      //user registration
+      const result = await createUser(email, password);
+      //save username and profile picture
+      await updateUserProfile(name, imageData?.data?.display_url);
+      console.log(result);
+      //save user data in database i.e result.user.email
+      const dbResponse = await saveUser(result?.user);
+      console.log(dbResponse);
+
+      //get jwt token
+    } catch (err) {
+      console.log(err);
+    }
+
+
+
+
+    // console.log(imageData);
 
     // *** below is the standard code for uploading using imgbb api this code is optimized in api utils.js
     // const formData = new FormData()
