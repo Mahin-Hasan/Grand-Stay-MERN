@@ -6,7 +6,7 @@ import Logo from '../../Shared/Logo'
 import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from 'react-icons/fc'
 import { AiOutlineBars } from 'react-icons/ai'
-import {  BsGraphUp } from 'react-icons/bs'
+import { BsGraphUp } from 'react-icons/bs'
 
 import useAuth from '../../../hooks/useAuth'
 // import HostMenu from './HostMenu'
@@ -24,7 +24,7 @@ const Sidebar = () => {
     const [toggle, setToggle] = useState(false)
     const [isActive, setActive] = useState(false)
     const [role] = useRole()
-    // console.log('Logged user role -->', role);
+    console.log('Logged user role -->', role);
     //   For guest/host menu item toggle button
     const toggleHandler = event => {
         setToggle(event.target.checked)
@@ -65,7 +65,7 @@ const Sidebar = () => {
 
                     {/* nav Items */}
                     <div className='flex flex-col justify-between flex-1 mt-6'>
-                        <ToggleBtn toggleHandler={toggleHandler} />
+                        {role === 'host' && <ToggleBtn toggleHandler={toggleHandler} />}
                         <nav>
                             <MenuItem
                                 icon={BsGraphUp}
@@ -75,7 +75,7 @@ const Sidebar = () => {
                             {/* Conditional menu as per user role */}
                             {role === 'admin' && <AdminMenu />}
                             {role === 'guest' && <GuestMenu />}
-                            {role === 'host' && <HostMenu />}
+                            {role === 'host' ? toggle ? <HostMenu /> : <GuestMenu /> : ''}
                         </nav>
                     </div>
 
