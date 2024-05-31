@@ -6,23 +6,25 @@ import Logo from '../../Shared/Logo'
 import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from 'react-icons/fc'
 import { AiOutlineBars } from 'react-icons/ai'
-import { BsFillHouseAddFill, BsGraphUp } from 'react-icons/bs'
+import {  BsGraphUp } from 'react-icons/bs'
 
 import useAuth from '../../../hooks/useAuth'
-// import useRole from '../../../hooks/useRole'
 // import HostMenu from './HostMenu'
 // import GuestMenu from './GuestMenu'
 // import AdminMenu from './AdminMenu'
 import MenuItem from './MenuItem'
 import ToggleBtn from '../../Button/ToggleBtn'
-import { MdHomeWork } from 'react-icons/md'
+import useRole from '../../../hooks/useRole'
+import HostMenu from './HostMenu'
+import AdminMenu from './AdminMenu'
+import GuestMenu from './GuestMenu'
 
 const Sidebar = () => {
     const { logOut } = useAuth()
     const [toggle, setToggle] = useState(false)
     const [isActive, setActive] = useState(false)
-    //   const [role] = useRole()
-
+    const [role] = useRole()
+    // console.log('Logged user role -->', role);
     //   For guest/host menu item toggle button
     const toggleHandler = event => {
         setToggle(event.target.checked)
@@ -63,24 +65,17 @@ const Sidebar = () => {
 
                     {/* nav Items */}
                     <div className='flex flex-col justify-between flex-1 mt-6'>
-                        <ToggleBtn />
+                        <ToggleBtn toggleHandler={toggleHandler} />
                         <nav>
                             <MenuItem
                                 icon={BsGraphUp}
                                 label='Statistics'
                                 address='/dashboard'
                             />
-                            {/* Menu items */}
-                            <MenuItem
-                                icon={BsFillHouseAddFill}
-                                label='Add Room'
-                                address='add-room'
-                            />
-                            <MenuItem
-                                icon={MdHomeWork}
-                                label='My Listings'
-                                address='my-listings'
-                            />
+                            {/* Conditional menu as per user role */}
+                            {role === 'admin' && <AdminMenu />}
+                            {role === 'guest' && <GuestMenu />}
+                            {role === 'host' && <HostMenu />}
                         </nav>
                     </div>
 

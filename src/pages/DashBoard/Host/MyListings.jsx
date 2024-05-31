@@ -7,7 +7,6 @@ import useAuth from '../../../hooks/useAuth'
 
 const MyListings = () => {
   const { user } = useAuth()
-  console.log(user.email);
   const [rooms, setRooms] = useState([])
   useEffect(() => {
     getHostRooms(user?.email).then(data => setRooms(data))
