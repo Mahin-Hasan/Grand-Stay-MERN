@@ -5,6 +5,7 @@ import Calender from "./Calender";
 import { useState } from "react";
 
 const RoomReservation = ({ room }) => {
+    let [isOpen, setIsOpen] = useState(false)
     const [value, setValue] = useState({
         startDate: new Date(room?.from),
         endDate: new Date(room?.to),
