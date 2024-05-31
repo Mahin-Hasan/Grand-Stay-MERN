@@ -51,7 +51,7 @@ const AddRoomForm = ({
                                 Select Availability Range
                             </label>
                             <DateRange
-                                rangeColors={['#F43F5E']}
+                                rangeColors={['#6366f1']}
                                 ranges={[dates]}
                                 onChange={handleDates}
                                 minDate={new Date()}
