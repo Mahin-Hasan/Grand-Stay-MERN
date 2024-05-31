@@ -54,7 +54,7 @@ const AddRoomForm = ({
                                 rangeColors={['#6366f1']}
                                 ranges={[dates]}
                                 onChange={handleDates}
-                                minDate={new Date()}
+                                minDate={new Date()} //to blur out previous dates
                             />
                         </div>
                     </div>
