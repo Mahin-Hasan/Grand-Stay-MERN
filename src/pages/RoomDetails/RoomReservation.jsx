@@ -57,7 +57,9 @@ const RoomReservation = ({ room }) => {
             </div>
             <hr />
             <div className="p-4">
-                <Button onClick={() => setIsOpen(true)} label={'Reserve'} />
+                <Button 
+                disabled={room.host.email === user.email || room.booked} //if logged user is host or room is booked the button will be disabled
+                onClick={() => setIsOpen(true)} label={'Reserve'} />
             </div>
             <hr />
             <div className="flex items-center justify-between font-semibold text-lg p-4">
