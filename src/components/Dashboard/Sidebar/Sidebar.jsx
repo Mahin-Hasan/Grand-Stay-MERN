@@ -12,9 +12,10 @@ import useAuth from '../../../hooks/useAuth'
 import MenuItem from './MenuItem'
 import ToggleBtn from '../../Button/ToggleBtn'
 import useRole from '../../../hooks/useRole'
-import HostMenu from './HostMenu'
-import AdminMenu from './AdminMenu'
-import GuestMenu from './GuestMenu'
+import AdminMenu from '../Menu/AdminMenu'
+import GuestMenu from '../Menu/GuestMenu'
+import HostMenu from '../Menu/HostMenu'
+
 
 const Sidebar = () => {
     const { logOut } = useAuth()

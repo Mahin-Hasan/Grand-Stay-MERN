@@ -17,7 +17,6 @@ const Home = () => {
       < Helmet >
         <title>GrandStay | Vacation Homes & Condo Rentals</title>
       </Helmet >
-      <h1>Welcome to Grand stayy</h1>
       {/* categories section */}
       <Categories />
       {/* room section */}
