@@ -5,6 +5,8 @@ import useRole from '../../../hooks/useRole';
 import useAuth from '../../../hooks/useAuth';
 import { useState } from 'react';
 import { GrUserAdmin } from 'react-icons/gr';
+import { becomeHost } from '../../../api/auth';
+import toast from 'react-hot-toast';
 
 const GuestMenu = () => {
     const [role] = useRole()
@@ -14,8 +16,19 @@ const GuestMenu = () => {
         setIsOpen(false)
     }
     const modalHandler = async () => {
-        
-        console.log('modal handler func working');
+        try {
+            const data = await becomeHost(user?.email)
+            console.log(data)
+            if (data.modifiedCount > 0) {
+                toast.success('Success!, Please wait for admin confirmation.')
+            } else {
+                toast.success('Please!, Wait for admin approval👊')
+            }
+        } catch (err) {
+            console.log(err)
+        } finally {
+            setIsOpen(false)
+        }
     }
     return (
         <>

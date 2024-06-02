@@ -42,6 +42,13 @@ const RoomReservation = ({ room }) => {
         image: room?.image,
     })
 
+    const handleDateChange = ranges => {//fix bug when clicked in calander in room detail route
+        setValue({
+            startDate: new Date(room?.from),
+            endDate: new Date(room?.to),
+            key: 'selection',
+        })
+    }
 
 
 
@@ -53,13 +60,13 @@ const RoomReservation = ({ room }) => {
             </div>
             <hr />
             <div className="flex justify-center">
-                <Calender value={value} />
+                <Calender value={value} handleDateChange={handleDateChange} />
             </div>
             <hr />
             <div className="p-4">
-                <Button 
-                disabled={room.host.email === user.email || room.booked} //if logged user is host or room is booked the button will be disabled
-                onClick={() => setIsOpen(true)} label={'Reserve'} />
+                <Button
+                    disabled={room.host.email === user.email || room.booked} //if logged user is host or room is booked the button will be disabled
+                    onClick={() => setIsOpen(true)} label={'Reserve'} />
             </div>
             <hr />
             <div className="flex items-center justify-between font-semibold text-lg p-4">

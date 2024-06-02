@@ -16,7 +16,7 @@ export const saveUser = async user => {
 //Get token from server
 
 export const getToken = async email => {
-    const { data } = await axiosSecure.post('/jwt', email)
+    const { data } = await axiosSecure.post('/jwt', { email }) //need to be sent in a object structure in the backend because it cannot recieve in string format
     console.log('Token received from server----->');
     return data
 }
@@ -51,3 +51,14 @@ export const updateRole = async ({ email, role }) => {
 
     return data;
 }
+
+// request for Host
+export const becomeHost = async email => {
+    const currentUser = {
+        email,
+        status: 'Requested'
+    }
+    const { data } = await axiosSecure.put(`/users/${email}`, currentUser)
+    return data
+}
+
