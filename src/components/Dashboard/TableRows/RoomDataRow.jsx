@@ -1,6 +1,34 @@
 import { format } from 'date-fns'
+import { useState } from 'react'
+import DeleteModal from '../../Modal/DeleteModal'
+import { deleteRoom } from '../../../api/rooms'
+import toast from 'react-hot-toast'
 
-const RoomDataRow = ({ room }) => {
+const RoomDataRow = ({ room, refetch }) => {
+  let [isOpen, setIsOpen] = useState(false)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+
+  function openModal() {
+    setIsOpen(true)
+  }
+  function closeModal() {
+    setIsOpen(false)
+  }
+
+  const modalHandler = id => {
+    console.log(id);
+    deleteRoom(id)
+      .then(data => {
+        console.log(data)
+        refetch()
+        toast.success('Room Deleted')
+      })
+      .catch(err => console.log(err))
+    closeModal()
+
+  }
+
+
   return (
     <tr>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -36,13 +64,21 @@ const RoomDataRow = ({ room }) => {
         </p>
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <span className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
+        <span
+          onClick={openModal}
+          className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
           <span
             aria-hidden='true'
             className='absolute inset-0 bg-red-200 opacity-50 rounded-full'
           ></span>
           <span className='relative'>Delete</span>
         </span>
+        <DeleteModal
+          isOpen={isOpen}
+          closeModal={closeModal}
+          modalHandler={modalHandler}
+          id={room._id}
+        />
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <span className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>

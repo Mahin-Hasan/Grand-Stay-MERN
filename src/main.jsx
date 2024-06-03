@@ -23,3 +23,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </HelmetProvider>
 )
 
+
+/*
+1. Feature left profile update and delete profile 
+2.
+
+*/
