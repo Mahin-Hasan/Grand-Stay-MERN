@@ -4,12 +4,13 @@ import useAuth from '../../hooks/useAuth'
 import { getToken, saveUser } from '../../api/auth'
 import toast from 'react-hot-toast'
 import { TbFidgetSpinner } from 'react-icons/tb'
+import { useRef } from 'react'
 
 const Login = () => {
-  const { signIn, signInWithGoogle, loading } = useAuth()
+  const { signIn, signInWithGoogle, resetPassword, loading } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
-
+  const emailRef = useRef(null)
   // console.log(location.state.from.pathname); stored location in private route
   const from = location?.state?.from?.pathname || '/' //if exist the prev loc or go to home
 
@@ -53,6 +54,25 @@ const Login = () => {
       toast.error(err?.message);
     }
   }
+  const HandleForgetPassword = () => {
+    console.log('clicked', emailRef.current.value);
+    resetPassword(emailRef.current.value)
+      .then(() => {
+        toast('Please Check your email....!',
+          {
+            icon: '📩',
+            style: {
+              borderRadius: '10px',
+              background: '#333',
+              color: '#fff',
+            },
+          }
+        )
+      })
+      .catch(err => {
+        toast.error(err)
+      })
+  }
 
 
   return (
@@ -79,6 +99,7 @@ const Login = () => {
                 type='email'
                 name='email'
                 id='email'
+                ref={emailRef}
                 required
                 placeholder='Enter Your Email Here'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-indigo-500 bg-gray-200 text-gray-900'
@@ -102,7 +123,7 @@ const Login = () => {
               />
             </div>
           </div>
-
+  
           <div>
             <button
               type='submit'
@@ -119,8 +140,11 @@ const Login = () => {
           </div>
         </form>
         <div className='space-y-1'>
-          <button className='text-xs hover:underline hover:text-rose-500 text-gray-400'>
-            Forgot password?
+          <span className='text-xs'>Forgot password?</span> <br />
+          <button
+            onClick={HandleForgetPassword}
+            className='text-xs hover:underline hover:text-sky-500 text-gray-400'>
+            Enter email and click <span className='text-rose-600 underline font-semibold'>Reset</span>
           </button>
         </div>
         <div className='flex items-center pt-4 space-x-1'>
