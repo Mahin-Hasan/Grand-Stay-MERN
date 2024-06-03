@@ -6,6 +6,7 @@ import useAuth from '../../../hooks/useAuth'
 import { useQuery } from '@tanstack/react-query'
 import Loader from '../../../components/Shared/Loader'
 import { getHostRooms } from '../../../api/rooms'
+import EmptyState from '../../../components/Shared/EmptyState'
 
 
 const MyListings = () => {
@@ -102,9 +103,11 @@ const MyListings = () => {
             </div>
           </div>
         ) : (
-          <div>
-            no data
-          </div>
+          <EmptyState
+          message='Add at least a room before coming here🥴'
+          address='/dashboard/add-room'
+          label='Add Rooms'
+        />
         )
       }
 

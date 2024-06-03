@@ -31,3 +31,9 @@ export const getHostBookings = async email => {
     const { data } = await axiosSecure(`/bookings/host?email=${email}`)
     return data
 }
+
+// delete a booking
+export const deleteBooking = async id => {
+    const { data } = await axiosSecure.delete(`/bookings/${id}`)
+    return data
+}

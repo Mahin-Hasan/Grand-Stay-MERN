@@ -22,7 +22,7 @@ const ManageBookings = () => {
   return (
     <>
       <Helmet>
-        <title>Manage Bookings</title>
+        <title>Manage Bookings | Dashboard</title>
       </Helmet>
 
       <div className='container mx-auto px-4 sm:px-8'>
@@ -74,7 +74,7 @@ const ManageBookings = () => {
                   {/* Table row data */}{' '}
                   {bookings &&
                     bookings.map(booking => (
-                      <TableRow key={booking._id} booking={booking} />
+                      <TableRow key={booking._id} booking={booking} refetch={refetch} />
                     ))}
                 </tbody>
               </table>
