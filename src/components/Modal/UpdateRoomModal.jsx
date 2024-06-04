@@ -15,7 +15,13 @@ const UpdateRoomModal = ({ setIsEditModalOpen, isOpen, refetch, room, id }) => {
   })
   const [roomData, setRoomData] = useState(room)
 
+  const [uploadButtonText, setUploadButtonText] = useState('Upload Image')
+
+
+
   const handleImageUpdate = image => {
+    console.log(image?.name);
+    setUploadButtonText(image?.name)
     setLoading(true)
     imageUpload(image)
       .then(res => {
@@ -102,6 +108,7 @@ const UpdateRoomModal = ({ setIsEditModalOpen, isOpen, refetch, room, id }) => {
                     loading={loading}
                     dates={dates}
                     handleDates={handleDates}
+                    uploadButtonText={uploadButtonText}
                   />
                 </div>
                 <hr className='mt-8 ' />

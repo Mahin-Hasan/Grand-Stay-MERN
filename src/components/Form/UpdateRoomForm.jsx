@@ -9,6 +9,7 @@ const UpdateRoomForm = ({
   handleImageUpdate,
   roomData,
   setRoomData,
+  uploadButtonText
 }) => {
   return (
     <div className='w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50'>
@@ -99,7 +100,7 @@ const UpdateRoomForm = ({
                     hidden
                   />
                   <div className='bg-indigo-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-indigo-500'>
-                    Upload Image
+                    {uploadButtonText}
                   </div>
                 </label>
               </div>
