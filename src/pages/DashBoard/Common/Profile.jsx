@@ -7,7 +7,7 @@ import { useState } from 'react'
 import UpdateProfileModal from '../../../components/Modal/UpdateProfileModal'
 
 const Profile = () => {
-    const { user, resetPassword, updateUserProfile } = useAuth()
+    const { user, resetPassword } = useAuth()
     const [role] = useRole()
     // console.log(user)
 
